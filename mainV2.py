@@ -46,14 +46,26 @@ if response.status_code == 200:
 
     # Otimizado via chatgpt
     for i in range(int(len(sequence))):
-        redata = response.json()
         records = data['records'][:len(sequence[i])]
         records_reversed = records[::-1]
-        colors = [record['color'] for record in records_reversed]
-        strategy_set = set(sequence[i])
+        colors=[]
+
+        print(len(records_reversed))
+        for j in range(int(len(records_reversed))):
+            colors.append(records_reversed[j]['color'])
+            # print(records_reversed[j]['color'])
+        print(colors)
+
+        #usando o set para formar conjuntos
         colors_set = set(colors)
 
-        if colors_set == strategy_set:
+        strategy_set = set(sequence[i])
+        # print(colors_set)
+        # print(strategy_set)
+        print('////----------------------------------------------')
+
+
+        if colors == sequence[i]:
             print("As listas são iguais")
         else:
             print("As listas são diferentes")
