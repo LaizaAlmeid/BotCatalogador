@@ -27,7 +27,7 @@ for z, estrategia in enumerate(data["estrategias"]):
     sequence.append(aux)
     print(sequence)
     print(f'Total: {data["estrategias"][z]["total"]}')
-    print('-----------------------------------------------')
+    print('--------------------------------------------------')
 
 
 
@@ -49,21 +49,22 @@ if response.status_code == 200:
         records = data['records'][:len(sequence[i])]
         records_reversed = records[::-1]
         colors=[]
+        cont=0
 
+        print('////----------------------------------------------')
         print(len(records_reversed))
         for j in range(int(len(records_reversed))):
             colors.append(records_reversed[j]['color'])
-            # print(records_reversed[j]['color'])
+
+            print(sequence[i][j])
+            if records_reversed[j]['color'] == sequence[i][j] or (sequence[i][j]=='PV' and (records_reversed[j]['color'] == 'red' or records_reversed[j]['color'] =='black' )):
+                print('igual')
+
+            
+
+
         print(colors)
-
-        #usando o set para formar conjuntos
-        colors_set = set(colors)
-
-        strategy_set = set(sequence[i])
-        # print(colors_set)
-        # print(strategy_set)
-        print('////----------------------------------------------')
-
+        print(sequence[i])
 
         if colors == sequence[i]:
             print("As listas são iguais")
